@@ -1,46 +1,141 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bible IQ Test</title>
-<style>
-body{margin:0;background:#0f172a;color:#fff;font-family:sans-serif;display:flex;justify-content:center;min-height:100vh}
-.card{background:#1e293b;width:95%;max-width:500px;margin:15px;border-radius:20px;padding:24px}
-h1{color:#fbbf24;text-align:center}
-.opt{width:100%;padding:14px;margin:8px 0;background:#334155;color:#fff;border:0;border-radius:10px;text-align:left;font-size:17px}
-</style>
-</head>
-<body>
-<div class="card">
-<h1>📖 Bible IQ Test</h1>
-<div id="sc" style="text-align:center;color:#fbbf24">Score: 0</div>
-<div id="qq" style="font-size:20px;font-weight:700;margin:20px 0"></div>
-<div id="oo"></div>
-<div id="end" style="display:none;text-align:center"><h2 id="fin"></h2><button style="width:100%;padding:16px;background:#fbbf24;border:0;border-radius:10px;font-weight:700" onclick="location.reload()">Play Again</button></div>
-</div>
-<script>
-var Q=[["Who built the ark?","Noah","Moses","Abraham","David",0],["Creation days?","6","7","40","3",0],["Who in lions den?","Daniel","Joseph","Paul","Peter",0],["David beat Goliath with?","Stone sling","Sword","Prayer","Bow",0],["Jesus born?","Bethlehem","Nazareth","Jerusalem","Egypt",0],["Disciples?","12","10","7","40",0],["Denied Jesus 3x?","Peter","Judas","John","Thomas",0],["First Bible book?","Genesis","Exodus","Matthew","Psalms",0],["Led Israel from Egypt?","Moses","Joshua","Abraham","Noah",0],["Fed 5000 with?","5 loaves 2 fish","Manna","Bread only","12 baskets",0]];
-var i=0,s=0;
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bible IQ 100</title><style>*{box-sizing:border-box}body{margin:0;background:#0f172a;color:#fff;font-family:sans-serif;display:flex;justify-content:center;padding:10px;min-height:100vh}.card{background:#1e293b;width:100%;max-width:520px;border-radius:20px;padding:20px}h1{color:#fbbf24;text-align:center;margin:0 0 10px}.meta{display:flex;justify-content:space-between;color:#94a3b8;font-size:13px;margin:8px 0}.bar{height:8px;background:#334155;border-radius:10px;overflow:hidden}.fill{height:100%;background:#fbbf24;width:0%}.diff{padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}.easy{background:#22c55e;color:#000}.medium{background:#f59e0b;color:#000}.hard{background:#ef4444;color:#fff}.q{font-size:18px;font-weight:800;margin:14px 0;min-height:40px}.opt{width:100%;padding:13px;margin:6px 0;background:#334155;color:#fff;border:2px solid transparent;border-radius:10px;text-align:left;font-size:15px}.opt.correct{background:#22c55e!important;color:#000}.opt.wrong{background:#ef4444!important}.exp{background:#0f172a;border-left:4px solid #fbbf24;padding:10px;border-radius:6px;margin-top:10px;display:none;font-size:14px}.btn{width:100%;padding:13px;background:#fbbf24;color:#000;border:0;border-radius:10px;font-weight:800;margin-top:10px;display:none}.lev{display:flex;gap:6px;margin-bottom:10px}.lev button{flex:1;padding:7px;border:0;border-radius:8px;font-weight:700}.active{outline:2px solid #fff}</style></head><body><div class="card"><h1>📖 Bible IQ - 100 Qs</h1><div class="lev"><button id="b-all" class="active" onclick="setLev('all')" style="background:#334155;color:#fff">All 100</button><button id="b-Easy" onclick="setLev('Easy')" style="background:#22c55e">Easy</button><button id="b-Medium" onclick="setLev('Medium')" style="background:#f59e0b">Med</button><button id="b-Hard" onclick="setLev('Hard')" style="background:#ef4444;color:#fff">Hard</button></div><div class="meta"><span id="sc">Score:0</span><span id="ct">1/100</span><span id="db" class="diff easy">EASY</span></div><div class="bar"><div id="fl" class="fill"></div></div><div id="qq" class="q"></div><div id="oo"></div><div id="ex" class="exp"></div><button id="nx" class="btn" onclick="nextQ()">Next →</button><div id="end" style="display:none;text-align:center"><h2 id="fin" style="color:#fbbf24"></h2><p id="det"></p><button class="btn" style="display:block" onclick="location.reload()">Play Again</button></div></div><script>
+const ALL=[
+["Who built the ark?","Noah","Moses","Abraham","David",0,"Genesis 6:14 God saved Noah","Easy"],
+["Creation days?","6","7","40","3",0,"Genesis 1 - rested 7th","Easy"],
+["Lions den?","Daniel","David","Joseph","Paul",0,"Daniel 6:22 God shut mouths","Easy"],
+["David vs Goliath weapon?","Stone sling","Sword","Spear","Prayer",0,"1 Sam 17:49","Easy"],
+["Jesus born where?","Bethlehem","Nazareth","Jerusalem","Egypt",0,"Matthew 2:1 Micah 5:2","Easy"],
+["Disciples number?","12","10","7","40",0,"Luke 6:13","Easy"],
+["Denied Jesus 3x?","Peter","Judas","John","Thomas",0,"Luke 22:61","Easy"],
+["First Bible book?","Genesis","Exodus","Matthew","Psalms",0,"Means beginning","Easy"],
+["Led from Egypt?","Moses","Joshua","Abraham","Noah",0,"Exodus 14 Red Sea","Easy"],
+["Fed 5000 with?","5 loaves 2 fish","Manna","Bread","12 baskets",0,"Matthew 14:17","Easy"],
+["First man?","Adam","Moses","Noah","Abraham",0,"Gen 2:7","Easy"],
+["First woman?","Eve","Mary","Sarah","Ruth",0,"Gen 2:22","Easy"],
+["Commandments?","10","5","7","12",0,"Exodus 20","Easy"],
+["Killed Abel?","Cain","Adam","Noah","Seth",0,"Gen 4:8","Easy"],
+["Big fish?","Jonah","Moses","Peter","Paul",0,"Jonah 1:17","Easy"],
+["Mother Jesus?","Mary","Martha","Sarah","Elizabeth",0,"Luke 1:31","Easy"],
+["Betrayed Jesus?","Judas","Peter","John","Thomas",0,"Matt 26:15 30 silver","Easy"],
+["Sea parted?","Red Sea","Dead Sea","Galilee","Jordan",0,"Exodus 14:21","Easy"],
+["Strongest?","Samson","David","Goliath","Solomon",0,"Judges 16:30","Easy"],
+["Tempted Eve?","Serpent","Lion","Bear","Fox",0,"Gen 3:1","Easy"],
+["Built temple?","Solomon","David","Moses","Abraham",0,"1 Kings 6","Medium"],
+["Bible books?","66","70","60","50",0,"39 Old +27 New","Medium"],
+["Last book?","Revelation","Jude","Malachi","Acts",0,"John on Patmos","Medium"],
+["Water to wine?","Cana","Bethlehem","Nazareth","Jerusalem",0,"John 2:1 first miracle","Medium"],
+["Jesus fasted?","40 days","30","50","7",0,"Matt 4:2","Medium"],
+["Walls fell?","Jericho","Jerusalem","Babylon","Nineveh",0,"Joshua 6:20","Medium"],
+["Wisest king?","Solomon","David","Saul","Hezekiah",0,"1 Kings 3:12","Medium"],
+["Walked water?","Peter & Jesus","Moses","David","Paul",0,"Matt 14:29","Medium"],
+["Plagues?","10","7","12","5",0,"Exodus 7-12","Medium"],
+["Father Isaac?","Abraham","Moses","Jacob","Noah",0,"Gen 21:3","Medium"],
+["Jacob brother?","Esau","Joseph","Isaac","Benjamin",0,"Gen 25:25","Medium"],
+["Ladder dream?","Jacob","Joseph","Daniel","Abraham",0,"Gen 28:12 Bethel","Medium"],
+["Tax collector?","Matthew","Mark","Luke","John",0,"Matt 9:9 Levi","Medium"],
+["Goliath height?","9 feet","6","10","7",0,"1 Sam 17:4","Medium"],
+["Zacchaeus tree?","Sycamore","Palm","Olive","House",0,"Luke 19:4","Medium"],
+["Moses river?","Nile","Jordan","Red","Dead",0,"Exodus 2:3","Easy"],
+["Paul old name?","Saul","Silas","Simon","Stephen",0,"Acts 9:1","Medium"],
+["Pharaoh dreams?","Joseph","Moses","Daniel","Aaron",0,"Gen 41:25","Medium"],
+["Jesus grew?","Nazareth","Bethlehem","Jerusalem","Capernaum",0,"Matt 2:23","Easy"],
+["Thorns?","Crown","Gold","Silver","Bronze",0,"Matt 27:29","Easy"],
+["Saved Jews queen?","Esther","Ruth","Mary","Sarah",0,"Esther 4:14","Medium"],
+["Most Psalms?","David","Moses","Solomon","Asaph",0,"73 Psalms","Medium"],
+["Samuel mother?","Hannah","Sarah","Rachel","Leah",0,"1 Sam 1:27","Medium"],
+["Replaced Judas?","Matthias","Paul","Barnabas","Stephen",0,"Acts 1:26","Hard"],
+["Ark mountain?","Ararat","Sinai","Zion","Carmel",0,"Gen 8:4","Hard"],
+["First king?","Saul","David","Solomon","Samuel",0,"1 Sam 10:1","Hard"],
+["Anointed David?","Samuel","Saul","Nathan","Eli",0,"1 Sam 16:13","Hard"],
+["Blinded Damascus?","Paul","Peter","John","Stephen",0,"Acts 9:3","Hard"],
+["Furnace?","Shadrach Meshach Abednego","Peter James John","Moses Aaron","David Solomon",0,"Dan 3:25","Hard"],
+["Prison Philippi?","Philippi","Rome","Jerusalem","Ephesus",0,"Acts 16:26","Hard"],
+["Joseph price?","20 silver","30","Gold","10",0,"Gen 37:28","Hard"],
+["Methuselah age?","969","930","950","1000",0,"Gen 5:27 oldest","Hard"],
+["Manna?","Bread heaven","Meat","Fish","Fruit",0,"Exodus 16:31","Medium"],
+["Left-handed judge?","Ehud","Gideon","Samson","Deborah",0,"Judges 3:15","Hard"],
+["Uzzah touched?","Ark","Altar","Temple","Curtain",0,"2 Sam 6:6","Hard"],
+["Jesus ministry age?","30","33","12","25",0,"Luke 3:23","Medium"],
+["Longest book?","Psalms","Genesis","Jeremiah","Isaiah",0,"150 chaps","Medium"],
+["Shortest verse?","Jesus wept","Rejoice","God is love","Pray",0,"John 11:35","Easy"],
+["Doubted?","Thomas","Peter","Judas","John",0,"John 20:25","Easy"],
+["First martyr?","Stephen","James","Paul","Peter",0,"Acts 7:59","Medium"],
+["Baskets left 5000?","12","5","7","10",0,"Matt 14:20","Medium"],
+["Fell window?","Eutychus","Paul","Peter","Timothy",0,"Acts 20:9","Hard"],
+["Jesus cousin?","John Baptist","Peter","James","Thomas",0,"Luke 1:36","Medium"],
+["Calmed sea?","Galilee","Red","Dead","Med",0,"Mark 4:39","Easy"],
+["Ethiopian reading?","Isaiah","Jeremiah","Psalms","Genesis",0,"Acts 8:28","Hard"],
+["Samson hair cutter?","Delilah called man","Delilah","Philistines","Mother",0,"Judges 16:19","Medium"],
+["King Salem?","Melchizedek","David","Abraham","Noah",0,"Gen 14:18","Hard"],
+["John Baptist ate?","Locusts","Beetles","Flies","Ants",0,"Mark 1:6","Medium"],
+["Thrown overboard?","Jonah","Paul","Peter","James",0,"Jonah 1:15","Easy"],
+["Dry bones?","Ezekiel","Jeremiah","Isaiah","Daniel",0,"Ezekiel 37","Hard"],
+["Wrote Acts?","Luke","Paul","Peter","John",0,"Luke-Acts same","Medium"],
+["Lot city?","Sodom","Gomorrah","Nineveh","Jericho",0,"Gen 19:1","Easy"],
+["Spies to Canaan?","12","10","2","7",0,"Numbers 13:2","Medium"],
+["One leper returned?","One leper","Peter","Thomas","Judas",0,"Luke 17:17 ten lepers","Medium"],
+["Esau sold?","Birthright","Blessing","Land","Sheep",0,"Gen 25:33 stew","Medium"],
+["Judge woman?","Deborah","Ruth","Esther","Hannah",0,"Judges 4:4","Medium"],
+["Hid spies?","Rahab","Ruth","Deborah","Esther",0,"Joshua 2:1","Medium"],
+["Ruth husband?","Boaz","Mahlon then Boaz","Elimelech","Kilion",0,"Ruth 4:13","Medium"],
+["Moses died mount?","Nebo","Sinai","Ararat","Zion",0,"Deut 34:1","Hard"],
+["Og bed?","13 feet","9","12","10",0,"Deut 3:11","Hard"],
+["Years in Egypt?","430","400","70","40",0,"Exodus 12:40","Hard"],
+["Cupbearer?","Nehemiah","Ezra","Mordecai","Daniel",0,"Neh 1:11","Hard"],
+["Rebuilt wall?","Nehemiah","Ezra","Zerubbabel","Joshua",0,"Neh 6:15 52 days","Medium"],
+["Nineveh prophet?","Jonah","Nahum","Both Jonah & Nahum","Neither",2,"Jonah then Nahum","Hard"],
+["Immanuel means?","God with us","God saves","God love","God great",0,"Matt 1:23","Easy"],
+["Jesus earthly father?","Joseph foster","God","Zechariah","No one",0,"Matt 1:20 Holy Spirit","Easy"],
+["Beatitudes?","8","9","10","7",0,"Matt 5:3-12","Medium"],
+["Rich ruler wanted?","Eternal life","Money","Healing","Power",0,"Mark 10:17","Medium"],
+["Lazarus sisters?","Martha & Mary","Rachel","Leah","Ruth",0,"John 11:1","Easy"],
+["Wages sin?","Death","Life","Hell","Punishment",0,"Rom 6:23","Easy"],
+["Shipwrecked?","Paul","Peter","Jonah","All",3,"Acts 27 and Jonah","Medium"],
+["I am the way?","Jesus","Peter","Paul","John",0,"John 14:6","Easy"],
+["Tentmaker?","Paul","Peter","Jesus","John",0,"Acts 18:3","Medium"],
+["Wise men number?","Bible doesn't say","3","12","2",0,"Matt 2:1 magi","Hard"],
+["Tribe Jesus?","Judah","Levi","Benjamin","Joseph",0,"Heb 7:14","Medium"],
+["Son of Nun?","Joshua","Caleb","Moses","Aaron",0,"Exodus 33:11","Hard"],
+["John Baptist father?","Zechariah","Joseph","Zebedee","Elizabeth father",0,"Luke 1:13","Medium"],
+["OT language?","Hebrew","Greek","Aramaic","Hebrew & Aramaic",3,"Mostly Hebrew","Hard"],
+["King at birth?","Herod","Augustus","Nero","Pilate",0,"Matt 2:1 Herod Great","Easy"],
+["How Jesus died?","Cross","Stone","Sword","Poison",0,"John 19:18","Easy"],
+["Rose after?","3 days","2","7","40",0,"Matt 28:6","Easy"],
+["Holy Spirit came?","Pentecost","Passover","Tabernacles","Easter",0,"Acts 2:1","Medium"]
+];
+let qs=[...ALL],i=0,s=0,lock=false;
+function setLev(l){
+document.querySelectorAll('.lev button').forEach(b=>b.classList.remove('active'));
+document.getElementById('b-'+l).classList.add('active');
+if(l==='all') qs=[...ALL]; else qs=ALL.filter(x=>x[7]===l);
+i=0;s=0;load();
+}
 function load(){
-if(i>=Q.length){
-document.getElementById("qq").style.display="none";
-document.getElementById("oo").style.display="none";
-document.getElementById("end").style.display="block";
-document.getElementById("fin").innerText="Final Score "+s+" / "+Q.length;
-return;
+if(i>=qs.length){
+document.getElementById('qq').style.display='none';document.getElementById('oo').style.display='none';
+document.getElementById('ex').style.display='none';document.getElementById('nx').style.display='none';
+document.getElementById('end').style.display='block';
+document.getElementById('fin').innerText=`Final ${s}/${qs.length}`;
+document.getElementById('det').innerText=(s/qs.length>0.8?'Bible Genius!':s/qs.length>0.5?'Great Faith!':'Keep Studying!')+` You played ${qs.length} qs`;
+document.getElementById('fl').style.width='100%';return;
 }
-var c=Q[i];
-document.getElementById("qq").innerText=(i+1)+". "+c[0];
-var oo=document.getElementById("oo");oo.innerHTML="";
-for(var k=1;k<=4;k++){
-var b=document.createElement("button");
-b.className="opt";b.innerText=c[k];
-(function(idx){b.onclick=function(){if(idx==c[5])s++;i++;document.getElementById("sc").innerText="Score: "+s;load();}})(k-1);
-oo.appendChild(b);
+lock=false;let c=qs[i];
+document.getElementById('sc').innerText=`Score:${s}`;document.getElementById('ct').innerText=`${i+1}/${qs.length}`;
+let db=document.getElementById('db');db.innerText=c[7];db.className='diff '+(c[7]==='Easy'?'easy':c[7]==='Medium'?'medium':'hard');
+document.getElementById('fl').style.width=`${(i/qs.length)*100}%`;
+document.getElementById('qq').innerText=(i+1)+". "+c[0];
+let oo=document.getElementById('oo');oo.innerHTML='';
+for(let k=1;k<=4;k++){let b=document.createElement('button');b.className='opt';b.innerText=c[k];b.onclick=()=>check(k-1,b);oo.appendChild(b);}
+document.getElementById('ex').style.display='none';document.getElementById('nx').style.display='none';
 }
+function check(idx,btn){
+if(lock) return;lock=true;let c=qs[i];let btns=document.querySelectorAll('.opt');
+if(idx===c[5]){btn.classList.add('correct');s++;}else{btn.classList.add('wrong');btns[c[5]].classList.add('correct');}
+document.getElementById('sc').innerText=`Score:${s}`;
+let ex=document.getElementById('ex');
+ex.innerHTML=`<b>${idx===c[5]?'✅ Correct!':'❌ Wrong! Answer: '+c[c[5]+1]}</b><br>${c[6]}`;
+ex.style.display='block';document.getElementById('nx').style.display='block';
 }
+function nextQ(){i++;load();}
 load();
-</script>
-</body>
-</html>
+</script></body></html>
