@@ -1,0 +1,124 @@
+{
+  "constants": [
+    {
+      "type": "null"
+    },
+    {
+      "type": "bool",
+      "value": false
+    },
+    {
+      "type": "bool",
+      "value": true
+    },
+    {
+      "type": "int",
+      "value": 57490
+    },
+    {
+      "type": "int",
+      "value": 57706
+    },
+    {
+      "type": "int",
+      "value": 58332
+    },
+    {
+      "type": "int",
+      "value": 63668
+    },
+    {
+      "type": "string",
+      "value": "MaterialIcons"
+    },
+    {
+      "definition_index": 0,
+      "type": "instance",
+      "value": {
+        "codePoint": 3,
+        "fontFamily": 7,
+        "fontFamilyFallback": 0,
+        "fontPackage": 0,
+        "matchTextDirection": 2
+      }
+    },
+    {
+      "definition_index": 0,
+      "type": "instance",
+      "value": {
+        "codePoint": 4,
+        "fontFamily": 7,
+        "fontFamilyFallback": 0,
+        "fontPackage": 0,
+        "matchTextDirection": 1
+      }
+    },
+    {
+      "definition_index": 0,
+      "type": "instance",
+      "value": {
+        "codePoint": 5,
+        "fontFamily": 7,
+        "fontFamilyFallback": 0,
+        "fontPackage": 0,
+        "matchTextDirection": 1
+      }
+    },
+    {
+      "definition_index": 0,
+      "type": "instance",
+      "value": {
+        "codePoint": 6,
+        "fontFamily": 7,
+        "fontFamilyFallback": 0,
+        "fontPackage": 0,
+        "matchTextDirection": 1
+      }
+    }
+  ],
+  "definitions": [
+    {
+      "path": [
+        {
+          "kind": "class",
+          "name": "IconData"
+        }
+      ],
+      "uri": "package:flutter/src/widgets/icon_data.dart"
+    }
+  ],
+  "loading_units": [
+    {
+      "name": "main.dart.js"
+    }
+  ],
+  "uses": {
+    "instances": [
+      {
+        "definition_index": 0,
+        "uses": [
+          {
+            "constant_index": 8,
+            "loading_unit_index": 0,
+            "type": "constant"
+          },
+          {
+            "constant_index": 9,
+            "loading_unit_index": 0,
+            "type": "constant"
+          },
+          {
+            "constant_index": 10,
+            "loading_unit_index": 0,
+            "type": "constant"
+          },
+          {
+            "constant_index": 11,
+            "loading_unit_index": 0,
+            "type": "constant"
+          }
+        ]
+      }
+    ]
+  }
+}
